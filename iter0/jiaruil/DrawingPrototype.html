@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Star Battle Example Page</title>
+
+    <style>
+        #canvas {
+            border: 1px solid black;
+            margin: 20px;
+        }
+        #outputArea {
+            border: 1px solid lightgray;
+            margin: 20px;
+            height: 256px;
+            width: 512px;
+            overflow: scroll;
+            padding: 5px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+
+    <div id="outputArea"></div>
+
+    <script src="dist/example-bundle.js"></script>
+
+    <script>
+        var sideLength = 400; // side length of the puzzle board
+        var gridsPerSide = 10;
+        var gridSideLength = sideLength / gridsPerSide; // Corrected from `width / gridsPerSide`
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
+
+        // defining regions
+        // for this example file, only defined a few regions for example purposes
+        var regions = [
+            { cells: [{x: 0, y: 0}, {x: 1, y: 0}, {x: 1, y: 1}, {x: 0, y: 1}], color: "lightblue" },
+            { cells: [{x: 2, y: 0}, {x: 3, y: 0}, {x: 4, y: 0}, {x: 5, y: 0}, {x: 5, y: 1}, {x: 6, y: 1}, {x: 7, y: 1}], color: "lightgreen" },
+            { cells: [{x: 0, y: 9}, {x: 1, y: 9}, {x: 1, y: 8}, {x: 0, y: 8}], color: "salmon" },
+            { cells: [{x: 9, y: 8}, {x: 9, y: 9}, {x: 8, y: 9}, {x: 8, y: 8}], color: "yellow" }
+        ];
+
+        function drawBoard() {
+            regions.forEach(function(region) {
+                context.fillStyle = region.color;
+                region.cells.forEach(function(cell) {
+                    context.fillRect(cell.x * gridSideLength, cell.y * gridSideLength, gridSideLength, gridSideLength);
+                });
+            });
+
+            context.strokeStyle = "black";
+            for (var x = 0; x <= sideLength; x += gridSideLength) {
+                context.moveTo(x, 0);
+                context.lineTo(x, sideLength);
+            }
+            for (var y = 0; y <= sideLength; y += gridSideLength) {
+                context.moveTo(0,  y);
+                context.lineTo(sideLength, y);
+            }
+            context.stroke();
+        }
+
+        drawBoard();
+
+        // draw the star
+        // Code source: https://stackoverflow.com/questions/25837158/how-to-draw-a-star-by-using-canvas-html5
+        // Adapted from Andre Marques's reply
+        function drawStar(ctx, gridX, gridY, size) {
+            const centerX = gridX * size + size / 2;
+            const centerY = gridY * size + size / 2;
+            const radius = size * 0.4; 
+
+            ctx.beginPath();
+            for (let i = 0; i < 10; i++) {
+                const angle = i * Math.PI / 5; 
+                const r = (i % 2 === 0) ? radius : radius * 0.5;
+                const x = centerX + r * Math.sin(angle);
+                const y = centerY - r * Math.cos(angle); 
+                if (i === 0) {
+                    ctx.moveTo(x, y); // move to the first point
+                } else {
+                    ctx.lineTo(x, y); // draw line to next point
+                }
+            }
+            ctx.closePath();
+            ctx.fillStyle = 'gold';
+            ctx.fill();
+        }
+
+        drawStar(context, 2, 2, gridSideLength);
+    </script>
+</body>
+</html>

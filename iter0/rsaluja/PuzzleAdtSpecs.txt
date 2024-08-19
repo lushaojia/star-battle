@@ -1,0 +1,116 @@
+SPEC+TESTING STRATEGY FOR PUZZLE ADT
+
+class Puzzle {
+    Abstraction function: AF(size, regions, stars): represents a starboard with dimensions of size by size,
+    where regions is a map describing which tiles are located in which region by describing each region with a color,
+    represented as a string which will be the key in the map, with the value corresponding to an array containing the index of a tile located in the region, 
+    where indices are represented in row-major order using one-indexing, starting from the top row and leftmost column going right then down.
+    Stars is a map containing the same enumeration as the key representing the region, with the key as a color, and the corresponding
+    value as an array containing the indices of the stars of that region, also in row major order.
+
+    Rep Invariant:
+        no stars are adjacent in any direction or orientation
+        a region of the board cannot have more than 2 stars
+        a row of the map cannot have more than 2 stars
+        a column of the map cannot have more than 2 stars
+
+    public constructor (size: number, regions: Map<string, Array<number>>, stars: Map<string, Array<number>>) {
+
+    }
+     
+    Given a gameboard, determines whether or not the gameboard is solved
+    @returns True if gameboard is solved, False if blank or in progress
+    public solved_status(): boolean {
+
+    }
+    
+    
+    Given the row, col coordinates of a star, removes the corresponding star from the board and its current region.
+    Star must exist on the puzzle at the given tile.
+    @param row number for row, must range from 1 to size inclusive
+    @param col number for row, must range from 1 to size inclusive
+    @returns new Puzzle object without the star at (row, col). 
+    public remove_star(row: number, col:number): Puzzle {
+
+    }
+
+    Given the row, col coordinates of a tile in the Puzzle, adds a star to the tile in the region of the tile
+    Star must not exist on the puzzle at the given tile
+    @param row number for row, must range from 1 to size inclusive
+    @param col number for row, must range from 1 to size inclusive
+    @returns new Puzzle object with the star at (row, col)
+    public add_star(row: number, col:number): Puzzle {
+
+    }
+ 
+    Clear all the stars from a gameboard, 
+    @returns new Puzzle object with the same regions but with all the stars gone
+    public clear_stars(): Puzzle {
+
+    }
+     
+    Given row, col coordinates, convert to index in row-major order using one-indexing, starting from the top left, going right and down to get to a larger index
+    @param row number for row, must range from 1 to size inclusive
+    @param col number for row, must range from 1 to size inclusive
+    @returns converted index
+    public convert_to_index(row, col): number {
+
+    }
+
+    Given the index of a tile in row-major order in the board, convert it into coordinates representing the row and column number
+    @param valid index on gameboard, ranges from 1 to size*size inclusive
+    @returns array of two numbers, where the first element represents the row number, and the second element represents the column number
+    public convert_to_coords(index): Array<number> {
+
+    }
+
+
+
+    Return string representation of the puzzle. The first line of the puzzle should be: "Puzzle Size: {size}x{size}".
+    There should then be a newline, and after that for each region, output the name of the region in the format "RegionName: ".
+    After the colon, either output the location of the stars in (row, col) format in increasing order, or use the string "No Stars"
+    There should be a newline between every single region.
+    public toString(): string {
+
+    }
+}
+
+TESTING STRATEGY
+Partition on state of this, clear_stars
+    this is solved 
+    this is partially solved
+    this is empty
+Partition on potential errors:
+    a star is added to a row which already contains 2 stars
+    a star is added to a column which already contains 2 stars
+    a star is added to a region which already contains 2 stars
+    trying to add a star that is adjacent to some existing star
+Partition on remove_star, add_star, convert_to_index:
+    Partition on row:   
+        row = 1
+        1<row<size
+        row = size
+    Partition on col:
+        col = 1
+        1<col<size
+        col = size
+Partition on convert_to_index:
+    Partition on index:
+        index is located on a corner
+        index is located on an edge but not on a corner
+        index is not located on an edge or corner
+Partition on toString(), remove_star, add_star:
+    Partition on regions of this containing no stars:
+        0 of this contain no stars
+        >0 regions of this contain no stars
+    Partition on regions of this containing 1 star
+        0 regions of this contain 1 star
+        >0 regions of this contain 1 star
+    Partition on regions of this containing 2 stars:
+        0 regions of this contain 2 stars
+        >0 regions of this contain 2 stars
+
+
+
+
+

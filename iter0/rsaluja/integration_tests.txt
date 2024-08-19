@@ -1,0 +1,78 @@
+PLAN FOR MANUAL TESTING 
+
+PARTITIONS
+Partition on regions of Puzzle containing stars:
+        0 regions of Puzzle contain no stars
+        >0 regions of Puzzle contain no stars
+    Partition on regions of this containing 1 star
+        0 regions of Puzzle contain 1 star
+        >0 regions of Puzzle contain 1 star
+    Partition on regions of this containing 2 stars:
+        0 regions of Puzzle contain 2 stars
+        >0 regions of Puzzle contain 2 stars
+Partition on initial puzzle:
+        Server initially send an empty puzzle with correctly labelled regions
+Partition on errors:
+        no errors
+        error from having more than 2 stars in a row
+        error from having more than 2 stars in a column
+        error from having more than 2 stars in a region
+
+/*
+Manual test: initial server-client connection
+Covers: 0 regions of Puzzle contain no stars, 0 regions of Puzzle contain 1 star, 0 regions of Puzzle contain 2 stars
+1. Client requests server for a puzzle
+2. Go to web browser, ensure that a puzzle appears with 10 distinctly colored regions, where each region is contiguous, and there are no stars in any regions.
+*/
+
+/*
+Manual test: adding star to a region, then remove the star
+Covers: >0 regions of Puzzle contain no stars, >0 regions of Puzzle contain 1 star, no errors
+1. Add a star to an empty tile
+2. Make sure that tile now has a star
+3. Click on the tile again
+4. Make sure the star disappears from the tile
+*/
+
+/*
+Manual test: Adding 2 stars to a region, then remove them
+Covers: >0 regions of Puzzle contain 2 stars
+1. Add a star to an empty tile
+2. In the same region, add a star to an empty tile
+3. Click on one of the tiles
+4. Make sure the star disappears from the tile, but the star stays on the other tile
+5. Click on the tile which still has the star
+6. Make sure that no tiles now have any stars
+*/
+
+/*
+Manual test: trying to add a star to a row which already has two stars
+Covers: error from having more than 2 stars in a row
+1. Add a star to an empty tile
+2. In the same row, add a star to another tile in the same region
+3. Try adding a star to a tile in the same row but in a different region. This should throw an error
+
+/*
+
+
+Manual test: trying to add a star to a column which already has two stars
+Covers: error from having more than 2 stars in a column
+1. Add a star to an empty tile
+2. In the same column, add a star to another tile in the same region
+3. Try adding a star to a tile in the same column but in a different region. This should throw an error
+
+*/
+
+/*
+Manual test: trying to add a star to a region which already has two stars
+Covers: error from having more than 2 stars in a region
+1. Add a star to an empty tile
+2. Add a star to another tile in the same region
+3. Try adding a third tile to the same region. This should throw an error.
+*/
+
+
+
+
+
+

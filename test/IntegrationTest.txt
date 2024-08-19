@@ -1,0 +1,101 @@
+
+Use "kd-1-1-1" as puzzle
+
+Starting steps for all manual tests:
+1. npm run watch-client and npm run server on two separate windows
+2. browse to /local/starb-client.html
+
+Manual test: initial state
+3. check that the instructions are displayed along with the empty puzzle that was requested
+
+Manual test: add and remove any star
+3. add a star to (row=1, col=10)
+4. check that the star is displayed in the desired tile
+5. click on (row=1, col=10) to remove the star
+6. check that the star disappears and the original grid color is displayed again, with no remnants of a star
+
+Manual test: add an "illegal" star (>2 stars in row)
+3. add a star to (row = 1, col = 10)
+4. add a star to (row = 1, col = 4)
+5. OK
+6. add a star to (row = 1, col = 8)
+7. check that star was not added 
+   and an error message for ">2 stars in row" was displayed instead
+
+Manual test: add an "illegal" star (>2 stars in row)
+3. add a star to (row = 2, col = 5)
+4. add a star to (row = 5, col = 5)
+5. OK
+6. add a star to (row = 10, col = 5)
+7. check that star was not added 
+   and an error message for ">2 stars in col" was displayed instead
+
+Manual test: add an "illegal" star (>2 stars in region)
+3. add a star to (row = 1, col = 9)
+4. add a star to (row = 3, col = 9)
+5. OK
+6. add a star to (row = 5, col = 10)
+7. check that star was not added 
+   and an error message for ">2 stars in region" was displayed instead
+
+Manual test: add an "illegal" star (2 stars adjacent)
+3. add a star to (row = 5, col = 5)
+4. add a star to (row = 5, col = 4)
+5. check that star was not added 
+   and an error message for "stars adjacent" was displayed instead
+6. remove star at (row = 5, col = 4)
+7. add a star to (row = 4, col = 4)
+8. illegal
+9. remove star at (row = 4, col = 4)
+10. add a star to (row = 4, col = 5)
+11. illegal
+12. remove star at (row = 4, col = 5)
+13. add a star to (row = 4, col = 6)
+14. illegal
+15. remove star at (row = 4, col = 6)
+16. add star to (row = 5, col = 6)
+17. illegal
+18. remove star at (row = 5, col = 6)
+19. add star to (row = 6, col = 5)
+20. illegal
+21. remove star at (row = 6, col = 5)
+22. add star to (row = 6, col = 4)
+23. illegal
+
+
+
+Manual test: should be able to remove a star from a row/col/region that contains 2 stars 
+                and add another star to same row/col/region
+// same row
+3. add star to (row = 1, col = 1)
+4. add star to (row = 1, col = 3)
+5. remove star at (row = 1, col = 1)
+6. add star to (row = 1, col = 5) => should be OK
+// same col
+3. add star to (row = 2, col = 2)
+4. add star to (row = 2, col = 4)
+5. remove star at (row = 2, col = 4)
+6. add star to (row = 2, col = 10) => should be OK
+// same region
+3. add star to (row = 7, col = 3)
+4. add star to (row = 7, col = 5)
+5. remove star at (row = 7, col = 3)
+6. add star to (row = 6, col = 3) => should be OK
+
+Manual test: game has been won
+3. add stars to
+(1,2)  (1,5) 
+(2,9)  (4,10)
+(3,2)  (3,4) 
+(2,7)  (4,8) 
+(6,1)  (9,1)  
+(5,4)  (5,6)  
+(6,8)  (8,7) 
+(7,3)  (7,5)  
+(8,9) (10,10) 
+(9,3)  (10,6) 
+4. check that winning message is only displayed after all stars are added
+
+
+
+

@@ -1,0 +1,60 @@
+{
+  "name": "starb",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^20.2.x"
+  },
+  "scripts": {
+    "compile": "tsc && esbuild src/StarbClient.ts --bundle --sourcemap --outfile=dist/client-bundle.js --define:process.env.NODE_DEBUG=undefined",
+    "test": "tsc || exit ; eslint . --ext .ts ; mocha --require source-map-support/register dist/test",
+    "lint": "tsc && eslint . --ext .ts",
+    "coverage": "c8 npm test",
+    "server": "tsc && node --require source-map-support/register dist/src/StarbServer.js",
+    "watch-client": "tsc --noEmit --watch --preserveWatchOutput & esbuild src/StarbClient.ts --bundle --sourcemap --outfile=dist/client-bundle.js --define:process.env.NODE_DEBUG=undefined --watch",
+    "watch-example": "tsc --noEmit --watch --preserveWatchOutput & esbuild src/ExamplePage.ts --bundle --sourcemap --outfile=dist/example-bundle.js --define:process.env.NODE_DEBUG=undefined --watch"
+  },
+  "mocha": {
+    "reporter": "spec",
+    "exit": true
+  },
+  "c8": {
+    "extension": [
+      ".js"
+    ],
+    "exclude": [
+      "coverage/",
+      "dist/*-bundle.js"
+    ],
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "all": true
+  },
+  "browser": {
+    "assert": "assert-browserify"
+  },
+  "dependencies": {
+    "canvas": "^2.11.2",
+    "express": "^4.17.2",
+    "express-async-handler": "^1.2.0",
+    "http-status-codes": "^2.1.4",
+    "parserlib": "file:/./lib/parserlib-4.0.1.tgz"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^20.2.5",
+    "@typescript-eslint/eslint-plugin": "^6.20.0",
+    "@typescript-eslint/parser": "^6.20.0",
+    "assert-browserify": "^2.0.0",
+    "c8": "^9.1.0",
+    "esbuild": "^0.20.2",
+    "eslint": "^8.33.0",
+    "eslint-plugin-jsdoc": "^48.0.4",
+    "mocha": "^10.2.0",
+    "source-map-support": "^0.5.21",
+    "typescript": "^5.1.3"
+  }
+}

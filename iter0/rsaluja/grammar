@@ -1,0 +1,7 @@
+BOARD_FILE ::= ROW "x" COLUMN NEWLINE (REGION NEWLINE)+
+REGION ::= POS* "|" POS*
+POS ::= NUM "," NUM
+ROW ::= NUM
+COLUMN ::= NUM
+NUM ::= [0-9]+
+NEWLINE ::= "\r"? "\n"

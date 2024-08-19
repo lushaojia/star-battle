@@ -1,0 +1,85 @@
+CLIENT SPECS+TESTING STRATEGY
+class Client {
+    AF(currentPuzzle, canvasObject) - represents the current puzzle that the client is showing, with the canvasObject containing the
+    drawing of the puzzle.
+    Rep Invariant:
+        True
+    
+
+    Initializes currentPuzzle to be a blank puzzle with no stars, and canvasObject to be a drawing of the puzzle with no stars.
+    This drawing should have all the regions colored with the correct corresponding color.
+    constructor(currentPuzzle, canvasObject) {
+
+    }
+
+    Gets an empty puzzle from the server
+    @returns Puzzle which is empty (no stars have been placed on the board yet)
+    getPuzzle(): Puzzle {
+
+    }
+     
+    Displays the puzzle as a Canvas object on the screen
+    showPuzzle(): void {
+
+    }
+
+    Decides based on mouseclick whether to trigger removing or adding a star
+    @param event a mouse click, position of mouseclick determines whether to add or remove a star
+    handleInput(event: MouseEvent) {
+
+    }
+
+    Adds a star to when the user clicks the tile at position (row, col)
+    The tile must not already have a star on it
+    Following click, updates the Puzzle and displays it to the user.
+    If adding star solves the puzzle, display completion message to the user and terminate.
+    @param row number for row, must range from 1 to size inclusive
+    @param col number for col, must range from 1 to size inclusive
+    addStar(row: number, col: number): void {
+
+
+    }
+
+    Removes star from tile when the user clicks the tile at position (row, col)
+    The tile must already have a star on it
+    Following click, updates the Puzzle and displays it to the user. 
+    @param row number for row, must range from 1 to size inclusive
+    @param col number for col, must range from 1 to size inclusive
+    removeStar(row:number, col:number): void {
+
+    }
+}
+
+TESTING STRATEGY
+Partition on removeStar, addStar:
+    Partition on row:   
+        row = 1
+        1<row<size
+        row = size
+    Partition on col:
+        col = 1
+        1<col<size
+        col = size
+Partition on regions of associated puzzle of this (use w/ showPuzzle):
+    Partition on regions of puzzle containing no stars:
+        0 regions of this contain no stars
+        >0 regions of this contain no stars
+    Partition on regions of this containing 1 star
+        0 regions of this contain 1 star
+        >0 regions of this contain 1 star
+    Partition on regions of this containing 2 stars:
+        0 regions of this contain 2 stars
+        >0 regions of this contain 2 stars
+Partition on status of puzzle associated with this:
+    puzzle is solved
+    puzzle is in progress
+    puzzle has no stars
+Partition on handleInput:
+    Partition on event:
+        event clicks on an empty tile to add a star
+        event clicks on a tile with a star to remove the star
+Partition on getPuzzle:
+    blank puzzle returned
+
+
+

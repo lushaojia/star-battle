@@ -1,0 +1,55 @@
+Goals
+* Is it acceptable for one or two team members to do more work than the others in order to get the team an A?
+No.
+* What are the goals of the team?
+Complete the project: we hope to do the required parts very well. 
+If time permits, we can do the extensions.
+
+Meeting and communication norms
+* How will you use the in-class time?
+Work on the project.
+* Meetings outside of class
+We plan to meet in-person probably more after iteration 0, most likely no more than 1-2 hours per meeting.
+We will decide on as we go (i.e. every class meeting depending on our progress).
+We will meet in a study room in the library or student center.
+
+* How will you communicate outside of meetings? (Email list? Realtime messaging platform?)
+Group chat via text.
+
+* Updates
+Once we finish a part, send updates in the group chat.
+
+Work norms
+* How will work be divided among team members? (Show how you filled in the boxes from the project handout.)
+Iteration 0:
+Puzzle ADT: Sabrina, Ronak
+Parser: Emily, Ronak
+Server: Emily, Sabrina 
+Drawing: Emily, Sabrina
+Client ADT: Emily, Ronak
+Interaction: Sabrina, Ronak
+
+Iteration 1:
+Puzzle ADT: Emily
+Parser: Sabrina
+Server: Ronak
+Drawing: Ronak
+Client ADT: Sabrina
+Interaction: Emily
+
+* Internal deadlines
+Our internal deadlines for the official ones for iteration 0 is before class time on that day.
+Same applies for iteration 1.
+We plan to finish the project by 5/9 (Thursday) at midnight so we have a one day buffer before the official deadline.
+
+* Reviewing our work
+Since we plan to finish the work by class time, we can code review during class.
+People who work on one component for iteration 0 can talk with those who will work on it for iteration 1.
+When we finish iteration 1, we will go over the work altogether.
+
+* Where will you record who is responsible for which tasks? (Including future tasks that come up over the course of the project.)
+Update the team contract.
+
+
+Signatures:
+Ronak Saluja, Emily Lu, Sabrina Lu
