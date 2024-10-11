@@ -1,4 +1,4 @@
-# star-battle ⭐️⚔️
+# star-battle game ⭐️⚔️
 
 ### Usage
 1. `npm run server`
