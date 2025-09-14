@@ -32,6 +32,7 @@ export class StarServer {
      */
     public constructor(port:number) {
         this.app = express();
+        this.app.use(express.static('.')); // Look inside cwd for file to serve
         this.port = port;
         this.app.set('etag', false); // disable ETag caching
         // allow request from any webpage
@@ -146,7 +147,8 @@ export class StarServer {
  * on localhost:8789.
  */
 async function main(): Promise<void> {
-    const portNumber = 8789;
+    const defaultPortNumber = 8789;
+    const portNumber = Number(process.env['PORT'] ?? defaultPortNumber);
     const server = new StarServer(portNumber);
     await server.start();
 }

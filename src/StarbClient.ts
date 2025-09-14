@@ -301,7 +301,9 @@ export class Client {
     private displayMessage(message: string): void{
         const outputArea = document.getElementById('outputArea');
         assert(outputArea);
-        outputArea.textContent += message + '\n';
+        const text = outputArea.textContent ?? "";
+        const needsBreak = !text.endsWith("\n");
+        outputArea.textContent = text + (needsBreak ? "\n" : "") + message + "\n";
     }
 
     /**
@@ -316,7 +318,7 @@ export class Client {
                                 + "Instructions:\n"
                                 + "1. Click on an empty grid to add a star.\n"
                                 + "2. Click on a grid with a star to remove it.\n"
-                                + "3. You can place up to 2 stars in each row, column, and region; afterwards, no more stars can be added.";
+                                + "3. You can place up to 2 stars in each row, column, and region; afterwards, no more stars can be added.\n\n";
     }
 }
 
