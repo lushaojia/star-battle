@@ -53,7 +53,7 @@ const gridLength = 400; // board length
  */
 export async function getPuzzle(filename: string = PUZZLE): Promise<Puzzle>{
     try{
-        const response = await fetch(`http://localhost:8789/${filename}`);
+        const response = await fetch(`/${filename}`);
         const puzzleText = await response.text();
         const puzzle = parsePuzzle(puzzleText);
         return puzzle;

@@ -40,7 +40,7 @@
     "express": "^4.17.2",
     "express-async-handler": "^1.2.0",
     "http-status-codes": "^2.1.4",
-    "parserlib": "file:/./lib/parserlib-4.0.1.tgz"
+    "parserlib": "file:./lib/parserlib-4.0.1.tgz"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
