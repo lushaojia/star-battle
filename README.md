@@ -31,7 +31,7 @@ This client-server interactive web game was developed collaboratively in a team 
 - Displays human-readable errors for illegal moves and a win message when solved
 
 ### Puzzle Internals
-- Parsing: both client and server use a common grammar to transform puzzle files into structured data via [parserlib]([https://web.mit.edu/6.031/www/parserlib/3.2.3/typedoc/interfaces/Parser.html])
+- Parsing: both client and server use a common grammar to transform puzzle files into structured data via [parserlink](https://web.mit.edu/6.031/www/parserlib/3.2.3/typedoc/interfaces/Parser.html)
 - Game Model: a `Puzzle` ADT that provides operations for
   - updating the game state (i.e. adding and removing stars)
   - enforcing rules (i.e. adjacency and row/column/region constraints for stars)
