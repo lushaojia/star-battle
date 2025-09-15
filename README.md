@@ -37,7 +37,7 @@ This client-server interactive web game was developed collaboratively in a team 
   - enforcing rules (i.e. adjacency and row/column/region constraints for stars)
   - checking if the game has been won
  
-### My Contributons & Division of Work
+### Division of Work & My Contributons
 The project is divided into many parts (`Puzzle` ADT, grammar, server API, client ADT, UI graphics, integration tests).
 Each person provided initial designs for the specs and testing strategies for some parts in the first iteration and implemented the specs and tests of other parts in the second iteration.
 In the first iteration, I 
