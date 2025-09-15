@@ -1,19 +1,46 @@
 # star-battle ⭐️⚔️
 
+## The Rules
+Add stars to the grids so that each row, each column, and each region of the puzzle has exactly 2 stars, and no stars are vertically, horizontally, or diagonally adjacent.
+
 ## Play it
 https://star-battle-1014707612287.us-east1.run.app/starb-client.html
 
 ## Project Overview
-This client-server interactive web game was developed in 2 weeks as part of a team project for the course 6.1020 Software Construction at MIT.
+This client-server interactive web game was developed collaboratively in a team of 3 as part of a course project for 6.1020 Software Construction at MIT.
+
+### Tech Stack
+TypeScript, HTML5 Canvas, Express, tsc + esbuild, Mocha/c8, Docker, Cloud Run
 
 ### Server-Side (Express.js Backend)
-The server implements a RESTful API that
-* serves puzzle files stored statically in a local directory
-* parses "solved" puzzle files into an internal abstract data type (ADT) representation, clears the stars, and converts it back to a parsable string for the client
+- Serves static assets (e.g. puzzle files, HTML/JS) from the project root.
+- Exposes `GET /:filename` endpoint that:
+  - reads the requested `puzzles/<filename>.starb`
+  - parses it into an internal `Puzzle`
+  - clears stars to produce a “blank” puzzle using the `Puzzle` interface
+  - converts the `Puzzle` back to a parsable string and returns it to the client
 
 ### Client-Side (HTML5 Canvas Frontend)
-The client implements an interactive canvas-based UI that
-* fetches "blank" puzzle data via a GET request to the server and parses it into an instance of the ADT
-* dynamically renders the game state using 2D context API
-* validates user actions in real-time (e.g. putting two stars adjacent to each other) before state and UI updates
-* provides immediate feedback by displaying error messages for illegal moves and 
+- On load, makes a `GET /<filename>` request and parses the response into a `Puzzle`
+- Renders the board grids and colored regions on Canvas
+- Listens for clicks → maps locations of clicks from pixels to grid cells → validates legality of moves → updates game state and board
+- Displays human-readable errors for illegal moves and a win message when solved
+
+### Puzzle Internals
+- Parsing: both client and server use a common grammar to transform puzzle files into structured data via [parserlib]([url](https://web.mit.edu/6.031/www/parserlib/3.2.3/typedoc/interfaces/Parser.html))
+- Game Model: a `Puzzle` ADT that provides operations for
+  - updating the game state (i.e. adding and removing stars)
+  - enforcing rules (i.e. adjacency and row/column/region constraints for stars)
+  - checking if the game has been won
+ 
+### My Contributons & Division of Work
+The project is divided into many parts (`Puzzle` ADT, grammar, server API, client ADT, UI graphics, integration tests).
+Each person provided initial designs for the specs and testing strategies for some parts in the first iteration and implemented the specs and tests of other parts in the second iteration.
+In the first iteration, I 
+- designed a grammar for parsing puzzle files
+- designed specs and testing strategy for the server API and client ADT
+- created canvas drawing prototypes for rendering grids, regions, and stars
+In the second iteration, I
+- implemented the spec and unit testing for the `Puzzle` ADT
+- validated server-client integration and UI rendering through manual end-to-end tests
+
